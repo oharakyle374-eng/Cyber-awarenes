@@ -4,6 +4,18 @@ const p1 = "AQ_Ab8RN6JsHk4g8jlMMYOkUQh";
 const p2 = "ITTG62ke3prP6rT897JZ9Ls4pzA"; 
 const GEMINI_API_KEY = p1 + p2;
 
+// Fungsi untuk membuka tutup jendela chatbox
+function toggleChat() {
+    const chatWindow = document.getElementById("chat-window");
+    if (!chatWindow) return;
+    
+    if (chatWindow.style.display === "none" || chatWindow.style.display === "") {
+        chatWindow.style.display = "flex";
+    } else {
+        chatWindow.style.display = "none";
+    }
+}
+
 // Fungsi untuk menampilkan pesan ke dalam bubble chatbox
 function tampilkanPesan(teks, pengirim, idLoading = null) {
     const chatBox = document.getElementById("chat-box"); 
@@ -11,6 +23,14 @@ function tampilkanPesan(teks, pengirim, idLoading = null) {
 
     const bubble = document.createElement("div");
     bubble.className = `message ${pengirim}-message`;
+    
+    // Style bawaan sederhana agar gelembung chat rapi
+    if (pengirim === "user") {
+        bubble.style.cssText = "background: #2563eb; color: white; padding: 8px 12px; border-radius: 12px 0 12px 12px; max-width: 80%; align-self: flex-end; margin-left: auto;";
+    } else {
+        bubble.style.cssText = "background: #e2e8f0; color: #1e293b; padding: 8px 12px; border-radius: 0 12px 12px 12px; max-width: 80%; align-self: flex-start;";
+    }
+    
     if (idLoading) bubble.id = idLoading;
     bubble.innerHTML = teks;
 
@@ -20,7 +40,7 @@ function tampilkanPesan(teks, pengirim, idLoading = null) {
 
 // Fungsi utama untuk mengirim pesan ke Google Gemini API
 async function kirimPesan() {
-    const inputEl = document.getElementById("chat-messages"); 
+    const inputEl = document.getElementById("chat-input"); 
     if (!inputEl) return;
 
     const teksUser = inputEl.value.trim();
