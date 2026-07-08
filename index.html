@@ -24,7 +24,7 @@
     <main style="max-width: 1000px; padding: 50px;">
         
         <div style="text-align: center; margin-bottom: 45px;">
-            <span style="background: #ef4444; color: white; padding: 4px 12px; border-radius: 20px; font-size: 0.8rem; font-weight: 700; uppercase; letter-spacing: 0.5px;">
+            <span style="background: #ef4444; color: white; padding: 4px 12px; border-radius: 20px; font-size: 0.8rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px;">
                 🚨 Darurat Cyber Crime 2026
             </span>
             <h1 style="margin-top: 15px; font-size: 2.5rem; line-height: 1.2;">
@@ -98,33 +98,34 @@
         <p style="font-style: italic; color: var(--success); font-size: 0.85rem; margin-top: 4px;">"Tera' Ta' a-dhemar"</p>
     </footer>
 
+    <!-- WIDGET CHATBOX -->
+    <div id="ai-chat-widget" style="position: fixed; bottom: 20px; right: 20px; z-index: 1000; font-family: sans-serif;">
+        <button id="chat-toggle-btn" onclick="toggleChat()" style="width: 60px; height: 60px; border-radius: 50%; background: #2563eb; color: white; font-size: 1.8rem; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 10px rgba(0,0,0,0.2); border: none; cursor: pointer;">
+            💬
+        </button>
 
-     <div id="ai-chat-widget" style="position: fixed; bottom: 20px; right: 20px; z-index: 1000; font-family: sans-serif;">
-    <button id="chat-toggle-btn" onclick="toggleChat()" style="width: 60px; height: 60px; border-radius: 50%; background: #2563eb; color: white; font-size: 1.8rem; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 10px rgba(0,0,0,0.2); border: none; cursor: pointer;">
-        💬
-    </button>
-
-    <div id="chat-window" style="display: none; width: 350px; height: 450px; background: white; border-radius: 12px; box-shadow: 0 8px 24px rgba(0,0,0,0.15); border: 1px solid #e2e8f0; flex-direction: column; position: absolute; bottom: 75px; right: 0; overflow: hidden;">
-        <div style="background: #0f172a; color: white; padding: 15px; display: flex; justify-content: space-between; align-items: center;">
-            <div>
-                <h4 style="margin: 0; font-size: 0.95rem;">Waspada AI Assistant</h4>
-                <p style="margin: 0; font-size: 0.75rem; color: #34d399;">● Online • Pakar Keamanan</p>
+        <div id="chat-window" style="display: none; width: 350px; height: 450px; background: white; border-radius: 12px; box-shadow: 0 8px 24px rgba(0,0,0,0.15); border: 1px solid #e2e8f0; flex-direction: column; position: absolute; bottom: 75px; right: 0; overflow: hidden;">
+            <div style="background: #0f172a; color: white; padding: 15px; display: flex; justify-content: space-between; align-items: center;">
+                <div>
+                    <h4 style="margin: 0; font-size: 0.95rem;">Waspada AI Assistant</h4>
+                    <p style="margin: 0; font-size: 0.75rem; color: #34d399;">● Online • Pakar Keamanan</p>
+                </div>
+                <button onclick="toggleChat()" style="background: transparent; color: white; border: none; font-size: 1.2rem; cursor: pointer;">✕</button>
             </div>
-            <button onclick="toggleChat()" style="background: transparent; color: white; border: none; font-size: 1.2rem; cursor: pointer;">✕</button>
-        </div>
 
-        <div id="chat-messages" style="flex: 1; padding: 15px; overflow-y: auto; display: flex; flex-direction: column; gap: 10px; background: #f8fafc; font-size: 0.9rem;">
-            <div style="background: #e2e8f0; color: #1e293b; padding: 8px 12px; border-radius: 0 12px 12px 12px; max-width: 80%; align-self: flex-start;">
-                Halo! Saya Waspada AI. Tanyakan apa saja mengenai keamanan siber, phishing, atau bahaya file .APK!
+            <!-- ID DI SINI SUDAH SAYA SINKRONKAN JADI chat-box -->
+            <div id="chat-box" style="flex: 1; padding: 15px; overflow-y: auto; display: flex; flex-direction: column; gap: 10px; background: #f8fafc; font-size: 0.9rem;">
+                <div style="background: #e2e8f0; color: #1e293b; padding: 8px 12px; border-radius: 0 12px 12px 12px; max-width: 80%; align-self: flex-start;">
+                    Halo! Saya Waspada AI. Tanyakan apa saja mengenai keamanan siber, phishing, atau bahaya file .APK!
+                </div>
             </div>
-        </div>
 
-        <div style="padding: 10px; border-top: 1px solid #e2e8f0; display: flex; gap: 8px; background: white;">
-            <input type="text" id="chat-input" placeholder="Ketik pertanyaan..." style="flex: 1; padding: 10px; border: 1px solid #cbd5e1; border-radius: 6px; font-size: 0.85rem; outline: none;" onkeypress="handleKeyPress(event)">
-            <button onclick="kirimPesan()" style="background: #2563eb; color: white; border: none; padding: 0 15px; border-radius: 6px; cursor: pointer; font-weight: 600; font-size: 0.85rem;">Kirim</button>
+            <div style="padding: 10px; border-top: 1px solid #e2e8f0; display: flex; gap: 8px; background: white;">
+                <input type="text" id="chat-input" placeholder="Ketik pertanyaan..." style="flex: 1; padding: 10px; border: 1px solid #cbd5e1; border-radius: 6px; font-size: 0.85rem; outline: none;">
+                <button onclick="kirimPesan()" style="background: #2563eb; color: white; border: none; padding: 0 15px; border-radius: 6px; cursor: pointer; font-weight: 600; font-size: 0.85rem;">Kirim</button>
+            </div>
         </div>
     </div>
-</div>
-<script src="js/ai.js"></script>
+    <script src="js/ai.js"></script>
 </body>
 </html>
