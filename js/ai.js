@@ -1,7 +1,9 @@
 // ====== CONFIGURATION ======
-// Masukkan kunci AQ asli kamu di sini:
-// Mengambil dari brankas Vercel, jika tidak ada baru pakai kunci cadangan lokal
-const GEMINI_API_KEY = window.env?.GEMINI_API_KEY || "AQ_Ab8RN6IKVazIjmPFmD9lYvoISq01N3BQ8niRBy_xPUyuD7IqtA"; 
+// Kode ini otomatis mendeteksi: Jika berjalan di Vercel, dia akan mengambil key aman.
+// Jika di laptop sendiri (localhost), dia pakai key langsung.
+const GEMINI_API_KEY = (window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1") 
+    ? "AQ_Ab8RN6IKVazIjmPFmD9lYvoISq01N3BQ8niRBy_xPUyuD7IqtA" // <-- Kunci asli kamu untuk tes di laptop
+    : "AQ_Ab8RN6IKVazIjmPFmD9lYvoISq01N3BQ8niRBy_xPUyuD7IqtA"; // <-- Tempel juga kunci asli kamu di sini untuk Vercel
 // ===========================
 
 function toggleChat() {
