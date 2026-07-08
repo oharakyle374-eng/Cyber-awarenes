@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Artikel Edukasi - Waspada Digital</title>
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        /* Gaya tambahan khusus untuk detail ornamen artikel */
+        .author-box {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin: 20px 0 30px 0;
+            padding-bottom: 20px;
+            border-bottom: 1px solid var(--border-color);
+        }
+        .author-avatar {
+            width: 42px;
+            height: 42px;
+            background: var(--primary);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 0.9rem;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .author-info h5 {
+            margin: 0;
+            color: var(--text-main);
+            font-size: 0.95rem;
+            font-weight: 600;
+        }
+        .author-info p {
+            margin: 0;
+            color: var(--text-muted);
+            font-size: 0.8rem;
+        }
+        .badge-category {
+            background-color: #eff6ff;
+            color: var(--accent);
+            padding: 4px 10px;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            display: inline-block;
+            margin-bottom: 8px;
+        }
+        .icon-circle {
+            width: 45px;
+            height: 45px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.4rem;
+            margin-bottom: 15px;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="nav-container">
+            <h2>Waspada Digital</h2>
+            <nav>
+                <a href="index.html">Beranda</a>
+                <a href="artikel.html" class="active">Artikel & Tips</a>
+                <a href="simulasi.html">Simulasi</a>
+                <a href="kuis.html">Kuis</a>
+                <a href="dokumentasi.html">Dokumentasi</a>
+            </nav>
+        </div>
+    </header>
+
+    <main style="max-width: 1000px; padding: 40px 50px;">
+        
+        <!-- Header Artikel Utama -->
+        <span class="badge-category">CYBERSECURITY AWARENESS</span>
+        <h1 style="font-size: 2.4rem; line-height: 1.3; margin-top: 5px;">
+            Anatomi Rekayasa Sosial: Mengapa Data Pribadi Kita Menjadi Incaran Utama Peretas?
+        </h1>
+
+        <!-- Poin No 1: Profil Kreator / Penulis / Author Meta Card -->
+        <div class="author-box">
+            <div class="author-avatar">UI</div> <!-- Inisial Kampus / Penulis -->
+            <div class="author-info">
+                <h5>Tim Edukasi Keamanan Informasi</h5>
+                <p>Dipublikasikan: Juli 2026 &bull; ⏱️ 3 Menit Waktu Baca</p>
+            </div>
+        </div>
+
+        <p style="text-align: justify; font-size: 1.05rem; color: #334155; margin-bottom: 25px;">
+            Di era transformasi teknologi yang masif, data pribadi telah menjelma menjadi komoditas ekonomi yang sangat berharga di pasar gelap. Peretas tidak lagi hanya mengincar celah keamanan pada sistem komputer server yang canggih, melainkan memanfaatkan titik terlemah dari sebuah sistem pertahanan keamanan, yaitu <b>manusia</b> itu sendiri melalui manipulasi psikologis.
+        </p>
+
+        <hr style="margin: 40px 0;">
+
+        <h2 style="font-size: 1.6rem; margin-bottom: 8px;">🛡️ 4 Pilar Praktis Perlindungan Aset Digital</h2>
+        <p style="color: var(--text-muted); margin-bottom: 30px;">Terapkan kerangka kerja berikut untuk mengamankan data Anda dari serangan phishing dan malware:</p>
+
+        <!-- Grid Tips dengan Sentuhan Ornamen Ikon Visual Medsos Modern -->
+        <div class="tips-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); gap: 25px;">
+            
+            <!-- Kartu 1 -->
+            <div class="card" style="display: flex; flex-direction: column; justify-content: space-between;">
+                <div>
+                    <div class="icon-circle" style="background-color: #eff6ff; color: #2563eb;">🎣</div>
+                    <h3 style="margin-bottom: 10px;">1. Deteksi Dini Ancaman Phishing</h3>
+                    <p style="font-size: 0.9rem; text-align: justify; color: #475569; margin: 0;">
+                        Selalu periksa alamat domain pengirim saat menerima email atau tautan mencurigakan. Institusi resmi tidak akan pernah menuntut Anda memasukkan data kredensial sensitif via URL pihak ketiga atau ruang obrolan tidak resmi.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Kartu 2 -->
+            <div class="card" style="display: flex; flex-direction: column; justify-content: space-between;">
+                <div>
+                    <div class="icon-circle" style="background-color: #fef2f2; color: #dc2626;">📱</div>
+                    <h3 style="margin-bottom: 10px;">2. Isolasi File Ekstensi .APK Palsu</h3>
+                    <p style="font-size: 0.9rem; text-align: justify; color: #475569; margin: 0;">
+                        Format file <code style="background: #f1f5f9; padding: 2px 4px; border-radius: 4px;">.apk</code> merupakan paket aplikasi Android. Waspadai dokumen bertajuk undangan pernikahan atau resi paket yang memiliki ekstensi ini karena berpotensi menjadi malware penyadap SMS OTP bank Anda.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Kartu 3 -->
+            <div class="card" style="display: flex; flex-direction: column; justify-content: space-between;">
+                <div>
+                    <div class="icon-circle" style="background-color: #ecfdf5; color: #059669;">🔐</div>
+                    <h3 style="margin-bottom: 10px;">3. Implementasi Kunci Ganda (2FA)</h3>
+                    <p style="font-size: 0.9rem; text-align: justify; color: #475569; margin: 0;">
+                        Aktifkan fitur <i>Two-Factor Authentication</i> pada seluruh akun esensial Anda. Langkah ini bertindak sebagai perimeter baris kedua yang mencegah peretas masuk meskipun mereka telah mengetahui kata sandi utama Anda.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Kartu 4 -->
+            <div class="card" style="display: flex; flex-direction: column; justify-content: space-between;">
+                <div>
+                    <div class="icon-circle" style="background-color: #fdf2f8; color: #db2777;">🔑</div>
+                    <h3 style="margin-bottom: 10px;">4. Penguatan Manajemen Kata Sandi</h3>
+                    <p style="font-size: 0.9rem; text-align: justify; color: #475569; margin: 0;">
+                        Gunakan kombinasi minimal 12 karakter acak unik yang memadukan huruf besar, kecil, angka, dan simbol. Hindari kebiasaan buruk menggunakan satu sandi yang sama untuk berbagai macam platform (<i>Password Reuse</i>).
+                    </p>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <footer>
+        <p><b>UNIBA MADURA</b> &bull; Program Studi Keamanan Informasi</p>
+        <p style="font-style: italic; color: var(--success); font-size: 0.85rem; margin-top: 5px;">"Tera' Ta' a-dhemar"</p>
+    </footer>
+
+</body>
+</html>
