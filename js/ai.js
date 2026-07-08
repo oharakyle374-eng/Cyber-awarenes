@@ -56,7 +56,7 @@ async function kirimPesan() {
 
     try {
         // JALUR RESMI LANGSUNG: Tanpa jembatan cors-anywhere, dosen langsung bisa pakai!
-        const urlResmi = `https://generativelanguage.googleapis.com/v1/models/gemini-2.0-flash:generateContent?key=${GEMINI_API_KEY}`;
+        const urlResmi = `https://generativelanguage.googleapis.com/v1/models/gemini-1.5-flash:generateContent?key=${GEMINI_API_KEY}`;
         
         const response = await fetch(urlResmi, {
             method: "POST",
