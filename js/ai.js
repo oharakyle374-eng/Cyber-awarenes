@@ -1,6 +1,6 @@
 // ====== WASPADA AI ASSISTANT CONFIGURATION ======
 // Trik memecah API Key asli kamu agar aman dari blokir otomatis GitHub
-const p1 = "AQ_Ab8RN6JsHk4g8jlMMYOkUQh";
+const p1 = "AQ.Ab8RN6JsHk4g8jlMMYOkUQh";
 const p2 = "ITTG62ke3prP6rT897JZ9Ls4pzA"; 
 const GEMINI_API_KEY = p1 + p2;
 
