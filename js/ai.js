@@ -20,7 +20,7 @@ function tampilkanPesan(teks, pengirim, idLoading = null) {
 
 // Fungsi utama untuk mengirim pesan ke Google Gemini API
 async function kirimPesan() {
-    const inputEl = document.getElementById("chat-input"); 
+    const inputEl = document.getElementById("chat-messages"); 
     if (!inputEl) return;
 
     const teksUser = inputEl.value.trim();
