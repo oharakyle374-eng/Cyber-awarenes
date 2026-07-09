@@ -49,17 +49,17 @@ function mulaiKuis() {
 function tampilkanSoal() {
     // Sembunyikan tombol "Selanjutnya" setiap ganti soal
     document.getElementById("next-btn").style.display = "none";
-    
+
     // Update komponen Progress & Teks Status
     const totalSoal = soalDiacak.length;
     document.getElementById("quiz-progress-text").innerText = `Pertanyaan ${indeksSoalSekarang + 1} dari ${totalSoal}`;
-    
+
     const persentaseProgress = ((indeksSoalSekarang) / totalSoal) * 100;
     document.getElementById("progress-fill").style.width = `${persentaseProgress}%`;
 
     const dataSoal = soalDiacak[indeksSoalSekarang];
     document.getElementById("question-text").innerText = dataSoal.soal;
-    
+
     // Acak Pilihan Jawaban
     const pilihanDiacak = acakArray([...dataSoal.pilihan]);
     const containerPilihan = document.getElementById("options-container");
@@ -69,24 +69,52 @@ function tampilkanSoal() {
         const tombol = document.createElement("button");
         tombol.innerText = pilihan;
         tombol.classList.add("option-btn");
-        
+
         // Daftarkan aksi klik
         tombol.onclick = (e) => cekJawaban(e.target, pilihan, dataSoal.jawabanBenar);
         containerPilihan.appendChild(tombol);
     });
 }
 
+// Umpan balik audio ringan berbasis Web Audio API (tanpa file suara eksternal)
+function mainkanSuara(apakahBenar) {
+    const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+    const oscillator = audioCtx.createOscillator();
+    const gainNode = audioCtx.createGain();
+
+    oscillator.connect(gainNode);
+    gainNode.connect(audioCtx.destination);
+
+    if (apakahBenar) {
+        // Suara "Ting" Nada Tinggi (Benar)
+        oscillator.type = "sine";
+        oscillator.frequency.setValueAtTime(600, audioCtx.currentTime);
+        oscillator.frequency.setValueAtTime(800, audioCtx.currentTime + 0.1);
+        gainNode.gain.setValueAtTime(0.1, audioCtx.currentTime);
+        oscillator.start();
+        oscillator.stop(audioCtx.currentTime + 0.25);
+    } else {
+        // Suara "Buzz" Nada Rendah (Salah)
+        oscillator.type = "sawtooth";
+        oscillator.frequency.setValueAtTime(150, audioCtx.currentTime);
+        gainNode.gain.setValueAtTime(0.1, audioCtx.currentTime);
+        oscillator.start();
+        oscillator.stop(audioCtx.currentTime + 0.3);
+    }
+}
+
 function cekJawaban(tombolTerpilih, pilihanUser, jawabanBenar) {
     const semuaTombol = document.querySelectorAll(".option-btn");
-    
+
     // Kunci semua tombol agar tidak bisa diklik dua kali
     semuaTombol.forEach(btn => btn.disabled = true);
 
-    // Cek kalkulasi skor dan ubah warna tombol
+    // Cek kalkulasi skor, ubah warna tombol, dan mainkan suara umpan balik
     if (pilihanUser === jawabanBenar) {
         skor += 20; // 5 soal x 20 = 100
         tombolTerpilih.classList.add("correct");
         document.getElementById("live-score").innerText = `Skor: ${skor}`;
+        mainkanSuara(true);
     } else {
         tombolTerpilih.classList.add("wrong");
         // Tunjukkan juga mana jawaban yang benar kepada user
@@ -95,6 +123,7 @@ function cekJawaban(tombolTerpilih, pilihanUser, jawabanBenar) {
                 btn.classList.add("correct");
             }
         });
+        mainkanSuara(false);
     }
 
     // Munculkan tombol selanjutnya
@@ -113,12 +142,12 @@ function cekJawaban(tombolTerpilih, pilihanUser, jawabanBenar) {
 function tampilkanSkorAkhir() {
     // Sempurnakan progress bar menjadi penuh di akhir kuis
     document.getElementById("progress-fill").style.width = "100%";
-    
+
     document.getElementById("quiz-box").style.display = "none";
     document.getElementById("result-box").style.display = "block";
-    
+
     document.getElementById("final-score").innerText = skor;
-    
+
     let evaluasi = "";
     if (skor >= 80) {
         evaluasi = "Luar biasa! Anda memiliki tingkat kesadaran keamanan informasi yang sangat matang. Pertahankan kepedulian digital Anda untuk melindungi aset data pribadi.";
@@ -127,67 +156,8 @@ function tampilkanSkorAkhir() {
     } else {
         evaluasi = "Tingkat kewaspadaan Anda sangat rentan terhadap ancaman serangan siber. Sangat direkomendasikan untuk membaca ulang seluruh panduan literasi di halaman Artikel demi keamanan akun Anda.";
     }
-    
+
     document.getElementById("evaluation-text").innerText = evaluasi;
-}
-
-// Tambahkan fungsi pembuat suara ini di bagian paling bawah atau paling atas file jskuis.js
-function mainkanSuara(apakahBenar) {
-    const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-    const oscillator = audioCtx.createOscillator();
-    const gainNode = audioCtx.createGain();
-    
-    oscillator.connect(gainNode);
-    gainNode.connect(audioCtx.destination);
-    
-    if (apakahBenar) {
-        // Suara "Ting" Nada Tinggi (Benar)
-        oscillator.type = 'sine';
-        oscillator.frequency.setValueAtTime(600, audioCtx.currentTime);
-        oscillator.frequency.setValueAtTime(800, audioCtx.currentTime + 0.1);
-        gainNode.gain.setValueAtTime(0.1, audioCtx.currentTime);
-        oscillator.start();
-        oscillator.stop(audioCtx.currentTime + 0.25);
-    } else {
-        // Suara "Buzz" Nada Rendah (Salah)
-        oscillator.type = 'sawtooth';
-        oscillator.frequency.setValueAtTime(150, audioCtx.currentTime);
-        gainNode.gain.setValueAtTime(0.1, audioCtx.currentTime);
-        oscillator.start();
-        oscillator.stop(audioCtx.currentTime + 0.3);
-    }
-}
-
-// Kemudian, cari fungsi cekJawaban yang sudah ada, lalu panggil fungsinya di sana:
-function cekJawaban(tombolTerpilih, pilihanUser, jawabanBenar) {
-    const semuaTombol = document.querySelectorAll(".option-btn");
-    semuaTombol.forEach(btn => btn.disabled = true);
-
-    if (pilihanUser === jawabanBenar) {
-        skor += 20;
-        tombolTerpilih.classList.add("correct");
-        document.getElementById("live-score").innerText = `Skor: ${skor}`;
-        mainkanSuara(true); // <--- TAMBAHKAN INI
-    } else {
-        tombolTerpilih.classList.add("wrong");
-        semuaTombol.forEach(btn => {
-            if (btn.innerText === jawabanBenar) {
-                btn.classList.add("correct");
-            }
-        });
-        mainkanSuara(false); // <--- TAMBAHKAN INI
-    }
-
-    const tombolNext = document.getElementById("next-btn");
-    tombolNext.style.display = "block";
-    tombolNext.onclick = () => {
-        indeksSoalSekarang++;
-        if (indeksSoalSekarang < soalDiacak.length) {
-            tampilkanSoal();
-        } else {
-            tampilkanSkorAkhir();
-        }
-    };
 }
 
 window.onload = mulaiKuis;
