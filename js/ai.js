@@ -1,3 +1,14 @@
+// Fungsi untuk buka/tutup jendela chat
+function toggleChat() {
+    const chatWindow = document.getElementById("chat-window");
+    if (chatWindow.style.display === "none" || chatWindow.style.display === "") {
+        chatWindow.style.display = "flex";
+    } else {
+        chatWindow.style.display = "none";
+    }
+}
+
+// Fungsi kirim pesan manual
 function kirimManual() {
     const inputEl = document.getElementById("chat-input");
     const chatBox = document.getElementById("chat-box");
@@ -14,7 +25,7 @@ function kirimManual() {
     inputEl.value = "";
     chatBox.scrollTop = chatBox.scrollHeight;
 
-    // 2. Logika Asisten Cerdas (Menjawab berdasarkan kata kunci)
+    // 2. Logika Asisten Cerdas
     setTimeout(() => {
         const aiBubble = document.createElement("div");
         aiBubble.style.cssText = "background: #e2e8f0; color: #1e293b; padding: 8px 12px; border-radius: 0 12px 12px 12px; max-width: 80%; align-self: flex-start; margin-bottom: 5px;";
@@ -35,6 +46,8 @@ function kirimManual() {
         chatBox.scrollTop = chatBox.scrollHeight;
     }, 500);
 }
+
+
 
 // Support tombol Enter
 document.getElementById("chat-input").addEventListener("keypress", function(e) {
