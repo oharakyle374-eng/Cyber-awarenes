@@ -6,8 +6,8 @@ const kumpulanSkenario = [
         statusSub: "Online",
         isiText: "Halo, saya kurir ekspedisi Express J&T. Paket Anda dengan nomor resi #99102X terhambat di gudang cabang Batuan karena penulisan alamat kurang detail. \n\nMohon segera unduh aplikasi pelacak resmi kami di bawah ini untuk validasi alamat & foto fisik paket Anda:",
         attachmentHtml: `<div class="wa-link-card">
-                            <b style="color: #075e54;">📁 J&T_Ekspedisi_Resi991.apk</b><br>
-                            <span style="color: #757575; font-size: 0.8rem;">Aplikasi Android • 7.4 MB</span>
+                            <b style="color: #25d366;">📁 J&T_Ekspedisi_Resi991.apk</b><br>
+                            <span style="color: #8696a0; font-size: 0.8rem;">Aplikasi Android • 7.4 MB</span>
                          </div>`,
         jawabanBenar: "bahaya",
         edukasi: "Tindakan Anda Tepat! Ini adalah modus malware APK Kurir Paket. Format berkas '.apk' adalah aplikasi sistem Android, bukan dokumen foto (.jpg) atau dokumen teks (.pdf). Jika terinstal, peretas dapat mencuri data konfirmasi OTP SMS perbankan Anda tanpa disadari."
@@ -30,8 +30,8 @@ const kumpulanSkenario = [
         statusSub: "bukan nomor resmi",
         isiText: "Pemberitahuan: Kendaraan Anda terdeteksi melakukan pelanggaran lalu lintas (ETLE) melanggar marka jalan di area Sumenep. \n\nSurat tindak tilang resmi beserta bukti foto pelanggaran terlampir pada dokumen digital di bawah ini. Harap segera diselesaikan agar STNK tidak diblokir:",
         attachmentHtml: `<div class="wa-link-card">
-                            <b style="color: #075e54;">📁 Surat_Tilang_Digital_ETLE.apk</b><br>
-                            <span style="color: #757575; font-size: 0.8rem;">Aplikasi Android • 5.1 MB</span>
+                            <b style="color: #25d366;">📁 Surat_Tilang_Digital_ETLE.apk</b><br>
+                            <span style="color: #8696a0; font-size: 0.8rem;">Aplikasi Android • 5.1 MB</span>
                          </div>`,
         jawabanBenar: "bahaya",
         edukasi: "Tepat sekali! Kepolisian RI tidak pernah mengirimkan surat tilang melalui file berformat .APK di WhatsApp. Surat tilang resmi dikirimkan via pos ke alamat pemilik kendaraan atau melalui notifikasi aplikasi resmi Polri."
@@ -54,8 +54,8 @@ const kumpulanSkenario = [
         statusSub: "Tidak Dikenal",
         isiText: "Kami mengharapkan kehadiran Bapak/Ibu/Saudara/i dalam acara resepsi pernikahan kami. Merupakan suatu kehormatan bagi kami apabila Anda berkenan hadir. \n\nDetail lokasi, waktu acara, dan barcode undangan digital dapat Anda akses melalui file di bawah ini:",
         attachmentHtml: `<div class="wa-link-card">
-                            <b style="color: #075e54;">📁 Undangan_Pernikahan_Digital.apk</b><br>
-                            <span style="color: #757575; font-size: 0.8rem;">Aplikasi Android • 6.8 MB</span>
+                            <b style="color: #25d366;">📁 Undangan_Pernikahan_Digital.apk</b><br>
+                            <span style="color: #8696a0; font-size: 0.8rem;">Aplikasi Android • 6.8 MB</span>
                          </div>`,
         jawabanBenar: "bahaya",
         edukasi: "Sempurna! Modus Undangan Pernikahan .APK ini sangat marak memakan korban. Penipu sengaja memanfaatkan rasa sungkan atau penasaran korban agar menginstal aplikasi yang sebenarnya berfungsi sebagai spyware penyadap SMS."
@@ -67,7 +67,8 @@ let indeksSkenario = 0;
 function muatSkenario() {
     const feedbackBox = document.getElementById("feedback-box");
     feedbackBox.style.display = "none"; // Sembunyikan feedback lama
-    
+    feedbackBox.classList.remove("fb-correct", "fb-wrong");
+
     // Aktifkan kembali tombol opsi tindakan
     const btns = document.querySelectorAll(".sim-actions button");
     btns.forEach(btn => btn.disabled = false);
@@ -77,7 +78,7 @@ function muatSkenario() {
             <div style="text-align: center; padding: 30px 0;">
                 <h2 style="color: var(--success); font-size: 2rem; margin-bottom: 10px;">Simulasi Selesai! 🏆</h2>
                 <p>Anda berhasil menyelesaikan semua uji laboratorium rekayasa sosial. Insting mitigasi Anda sudah sangat tajam!</p>
-                <button onclick="location.reload()" style="background-color: var(--accent); margin-top: 15px;">Ulangi Simulasi</button>
+                <button onclick="location.reload()" style="background-color: var(--accent); color: #06222c; font-weight: 700; margin-top: 15px;">Ulangi Simulasi</button>
             </div>`;
         return;
     }
@@ -95,7 +96,7 @@ function muatSkenario() {
                     <div class="wa-avatar"></div>
                     <div>
                         <div style="font-weight: 700; font-size: 0.95rem;">${data.pengirim}</div>
-                        <div style="font-size: 0.75rem; color: #a3c7c2;">${data.statusSub}</div>
+                        <div style="font-size: 0.75rem; color: #8fa7ae;">${data.statusSub}</div>
                     </div>
                 </div>
                 <div class="wa-body">
@@ -131,26 +132,17 @@ function prosesPilihan(pilihanUser) {
 
     feedbackBox.style.display = "block";
 
-    if (pilihanUser === data.jawabanBenar) {
-        fbTitle.innerText = "Keputusan Tepat! 🟢";
-        fbTitle.style.color = "#065f46";
-        feedbackBox.style.backgroundColor = "#d1fae5";
-        feedbackBox.style.borderLeft = "6px solid " + varColor('--success');
-        mainkanSuara(true); // <--- TAMBAHKAN INI
-    } else {
-        fbTitle.innerText = "Peringatan: Anda Terjebak! 🔴";
-        fbTitle.style.color = "#991b1b";
-        feedbackBox.style.backgroundColor = "#fee2e2";
-        feedbackBox.style.borderLeft = "6px solid " + varColor('--danger');
-        mainkanSuara(false); // <--- TAMBAHKAN INI
-    }
+    const benar = pilihanUser === data.jawabanBenar;
 
+    // Warna feedback sekarang ditentukan lewat class CSS (fb-correct / fb-wrong),
+    // bukan di-hardcode di sini, supaya konsisten dengan tema situs.
+    feedbackBox.classList.remove("fb-correct", "fb-wrong");
+    feedbackBox.classList.add(benar ? "fb-correct" : "fb-wrong");
+
+    fbTitle.innerText = benar ? "Keputusan Tepat! 🟢" : "Peringatan: Anda Terjebak! 🔴";
     fbText.innerText = data.edukasi;
-}
 
-// Helper untuk membaca CSS Root token
-function varColor(name) {
-    return getComputedStyle(document.documentElement).getPropertyValue(name).trim();
+    mainkanSuara(benar);
 }
 
 function nextSkenario() {
@@ -164,16 +156,16 @@ function mainkanSuara(apakahBenar) {
     const gainNode = audioCtx.createGain();
     oscillator.connect(gainNode);
     gainNode.connect(audioCtx.destination);
-    
+
     if (apakahBenar) {
-        oscillator.type = 'sine';
+        oscillator.type = "sine";
         oscillator.frequency.setValueAtTime(600, audioCtx.currentTime);
         oscillator.frequency.setValueAtTime(800, audioCtx.currentTime + 0.1);
         gainNode.gain.setValueAtTime(0.1, audioCtx.currentTime);
         oscillator.start();
         oscillator.stop(audioCtx.currentTime + 0.25);
     } else {
-        oscillator.type = 'sawtooth';
+        oscillator.type = "sawtooth";
         oscillator.frequency.setValueAtTime(150, audioCtx.currentTime);
         gainNode.gain.setValueAtTime(0.1, audioCtx.currentTime);
         oscillator.start();
